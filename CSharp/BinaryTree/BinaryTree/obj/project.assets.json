@@ -7045,11 +7045,11 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "D:\\Programming\\CSharp\\BinaryTree\\BinaryTree\\BinaryTree.csproj",
+      "projectUniqueName": "D:\\Programming\\Study\\CSharp\\BinaryTree\\BinaryTree\\BinaryTree.csproj",
       "projectName": "BinaryTree",
-      "projectPath": "D:\\Programming\\CSharp\\BinaryTree\\BinaryTree\\BinaryTree.csproj",
+      "projectPath": "D:\\Programming\\Study\\CSharp\\BinaryTree\\BinaryTree\\BinaryTree.csproj",
       "packagesPath": "C:\\Users\\looky\\.nuget\\packages\\",
-      "outputPath": "D:\\Programming\\CSharp\\BinaryTree\\BinaryTree\\obj\\",
+      "outputPath": "D:\\Programming\\Study\\CSharp\\BinaryTree\\BinaryTree\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\looky\\AppData\\Roaming\\NuGet\\NuGet.Config",
