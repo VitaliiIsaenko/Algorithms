@@ -83,6 +83,8 @@ namespace BinaryTree
             return current;
         }
 
+        //It is only one of possible implementations (PS - Algorithms and Data Structures Part 1)
+        //On Wiki there is other with examples in python
         public bool Remove(T node)
         {
             Node<T> parent;
@@ -117,51 +119,47 @@ namespace BinaryTree
             //Case 2: Current's right child has no left, so current's right replaces current
             else if (nodeToRemove.RightNode.LeftNode == null)
             {
+                nodeToRemove.RightNode.LeftNode = nodeToRemove.LeftNode;
                 if (parent == null)
                 {
                     head = nodeToRemove.RightNode.RightNode;
-
                 }
                 else
                 {
                     if (parent.CompareTo(nodeToRemove) <= 0)
                     {
-                        parent.RightNode = nodeToRemove.RightNode.RightNode;
-                        parent.RightNode.LeftNode = nodeToRemove.LeftNode;
-                        parent.RightNode.RightNode = nodeToRemove.RightNode;
+                        parent.RightNode = nodeToRemove.RightNode;
                     }
                     else
                     {
-                        parent.LeftNode = nodeToRemove.RightNode.RightNode;
-                        parent.LeftNode.LeftNode = nodeToRemove.LeftNode;
-                        parent.LeftNode.RightNode = nodeToRemove.RightNode;
+                        parent.LeftNode = nodeToRemove.RightNode;
                     }
                 }
             }
 
-
-            if (nodeToRemove.LeftNode == null && nodeToRemove.RightNode == null)
+            //Case 3: Current's right child has a left child, so we should find leftmost node
+            //in subtree that starts from right child of removing node (as a head)
+            else
             {
-
-                if (parent == null)
+                var leftmostChild = nodeToRemove.RightNode.LeftNode;
+                while (leftmostChild.LeftNode != null)
                 {
-                    
+                    leftmostChild = leftmostChild.LeftNode;
                 }
+                leftmostChild.RightNode = nodeToRemove.RightNode;
+                leftmostChild.LeftNode = nodeToRemove.LeftNode;
                 if (parent.CompareTo(nodeToRemove) <= 0)
                 {
-                    parent.RightNode = null;
+                    parent.RightNode = leftmostChild;
                 }
                 else
                 {
-                    parent.LeftNode = null;
+                    parent.LeftNode = leftmostChild;
                 }
-                return true;
             }
 
-            if (nodeToRemove.LeftNode == null)
-            {
+            return true;
 
-            }
         }
     }
 }
