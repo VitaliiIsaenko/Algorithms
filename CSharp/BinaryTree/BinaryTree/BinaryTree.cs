@@ -117,10 +117,25 @@ namespace BinaryTree
             //Case 2: Current's right child has no left, so current's right replaces current
             else if (nodeToRemove.RightNode.LeftNode == null)
             {
-
                 if (parent == null)
                 {
-                    
+                    head = nodeToRemove.RightNode.RightNode;
+
+                }
+                else
+                {
+                    if (parent.CompareTo(nodeToRemove) <= 0)
+                    {
+                        parent.RightNode = nodeToRemove.RightNode.RightNode;
+                        parent.RightNode.LeftNode = nodeToRemove.LeftNode;
+                        parent.RightNode.RightNode = nodeToRemove.RightNode;
+                    }
+                    else
+                    {
+                        parent.LeftNode = nodeToRemove.RightNode.RightNode;
+                        parent.LeftNode.LeftNode = nodeToRemove.LeftNode;
+                        parent.LeftNode.RightNode = nodeToRemove.RightNode;
+                    }
                 }
             }
 
