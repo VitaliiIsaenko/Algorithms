@@ -96,7 +96,7 @@ namespace BinaryTree
             }
             count--;
             
-            //Case 1: Current has no right child, so current's left child (node) replaces current
+            //Case 1: Current (deleted) has no right child, so current's left child (node) replaces current
             if (nodeToRemove.RightNode == null)
             {
                 if (parent == null)
@@ -139,13 +139,22 @@ namespace BinaryTree
 
             //Case 3: Current's right child has a left child, so we should find leftmost node
             //in subtree that starts from right child of removing node (as a head)
+            //Again, we replace current (deleted) node with current's right child's leftmost child
             else
             {
+                //Find the right's leftmost child and a parent of the child
                 var leftmostChild = nodeToRemove.RightNode.LeftNode;
+                var leftmostChildParent = nodeToRemove.RightNode;
                 while (leftmostChild.LeftNode != null)
                 {
+                    leftmostChildParent = leftmostChild;
                     leftmostChild = leftmostChild.LeftNode;
                 }
+
+                //The parent's left subtree becomes the leftmost's right subtree
+                leftmostChildParent.LeftNode = leftmostChild.RightNode;
+
+
                 leftmostChild.RightNode = nodeToRemove.RightNode;
                 leftmostChild.LeftNode = nodeToRemove.LeftNode;
                 if (parent.CompareTo(nodeToRemove) <= 0)
