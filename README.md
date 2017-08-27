@@ -1,0 +1,1 @@
+This repo is made for practicing basic algorithms and datastructures
