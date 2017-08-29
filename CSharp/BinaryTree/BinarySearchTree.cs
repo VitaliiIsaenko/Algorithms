@@ -7,7 +7,7 @@ using System.Text;
 
 namespace BinaryTree
 {
-    public class BinaryTree<T> : IEnumerable<T> where T : IComparable<T>
+    public class BinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
     {
         private Node<T> head;
         private int count;
@@ -254,25 +254,25 @@ namespace BinaryTree
                             nodes.Push(currentNode);
                             currentNode = currentNode.LeftNode;
                         }
+                    }
 
-                        yield return currentNode.Value;
+                    yield return currentNode.Value;
 
-                        //if we can go right then do so
-                        if (currentNode.RightNode != null)
-                        {
-                            currentNode = currentNode.RightNode;
+                    //if we can go right then do so
+                    if (currentNode.RightNode != null)
+                    {
+                        currentNode = currentNode.RightNode;
 
-                            //once we've gone right once, we need to start
-                            //going left again
-                            goLeftNext = true;
-                        }
-                        else
-                        {
-                            // if we can't go right then we need to pop off the parent node
-                            // so we can process it and then go to it's right child
-                            currentNode = nodes.Pop();
-                            goLeftNext = false;
-                        }
+                        //once we've gone right once, we need to start
+                        //going left again
+                        goLeftNext = true;
+                    }
+                    else
+                    {
+                        // if we can't go right then we need to pop off the parent node
+                        // so we can process it and then go to it's right child
+                        currentNode = nodes.Pop();
+                        goLeftNext = false;
                     }
                 }
             }
