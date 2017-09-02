@@ -1,3 +1,5 @@
+"""Module represents example of implementation of snapsack problem"""
+
 class Thing(object):
     """Represents a Thing object that is supposed to be stolen"""
     def __init__(self, name, weight, value):
@@ -5,8 +7,10 @@ class Thing(object):
         self.weight = weight
         self.value = value
 
-class Solving_grid_cell(object):
-    """Represents a cell for solving grid. Contains info about things sroted and current value (sum of values of things)"""
+class SolvingGridCell(object):
+    """Represents a cell for solving grid. Contains info about things sroted and current value
+    (sum of values of things)
+    """
     def __init__(self):
         self.things = []
         self.value = int()
@@ -15,13 +19,13 @@ class Solving_grid_cell(object):
 class Stealer(object):
     """Grabs some things and put it to his knapsack"""
     def __init__(self, max_weight):
-         self.max_weight = max_weight
+        self.max_weight = max_weight
 
     def get_necessary_things(self, available_things):
         """Finds the best suit to steel"""
         #Creates a grid where info about current subproblem solution will be stored
-        #Each cell - specially prepared object Solving_grid_cell
-        solving_grid = [[Solving_grid_cell() for x in range(self.max_weight)] for y in range(len(available_things))]
+        #Each cell - specially prepared object SolvingGridCell
+        solving_grid = [[SolvingGridCell() for x in range(self.max_weight)] for y in range(len(available_things))]
         #For each index of existing thing (for each created list - or for each raw)
         for i in range(len(available_things)):
             #For each index of sizes in our knapsack (for each item in a list - or for each cell)
@@ -61,23 +65,23 @@ class Stealer(object):
                     else:
                         solving_grid[i][j].value = solving_grid[i - 1][j].value
                         solving_grid[i][j].things = list(solving_grid[i - 1][j].things)
-        return solving_grid#solving_grid[len(available_things)-1][self.max_weight-1]
+        return solving_grid
 
 class Program(object):
-    """Instead of Main function - just invoke method that I want to test"""
+    """Instead of test - just invoke method that I want to test"""
     def check_stealer(self):
         """Checks if stealer sleals right things"""
+        stealer = Stealer(6)
         things = [Thing('W', 3, 10),
                   Thing('B', 1, 3),
                   Thing('F', 2, 9),
                   Thing('J', 2, 5),
                   Thing('C', 1, 6)]
-        stealer = Stealer(6)
-        
+
         grid = stealer.get_necessary_things(things)
         for i in range(len(grid)):
             for j in range(len(grid[i])):
-                print(grid[i][j].value,end=' ')
+                print(grid[i][j].value, end=': ')
                 for thing in grid[i][j].things:
                     print(thing.name, end=' ')
                 print()
