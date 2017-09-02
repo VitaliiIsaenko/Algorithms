@@ -13,10 +13,13 @@ class LongestSubstringFinder(object):
         for i in range(len(grid)):
             for j in range(len(grid[i])):
                 if string1[i] == string2[j]:
-                    grid[i][j].current_length = grid[i-1][j-1].current_length
+                    if i == 0 | j == 0:
+                        grid[i][j].common_string = string2[j]
+                        print('hifi')
+                    else:
+                        grid[i][j].current_length = grid[i-1][j-1].current_length
+                        grid[i][j].common_string = ''.join([grid[i-1][j-1].common_string, string2[j]])
                     grid[i][j].current_length += 1
-                    grid[i][j].common_string = ''.join([grid[i-1][j-1].common_string, string2[j]])
-
         return self.get_cell_with_longest_substring(grid)
 
     def get_cell_with_longest_substring(self, grid):
