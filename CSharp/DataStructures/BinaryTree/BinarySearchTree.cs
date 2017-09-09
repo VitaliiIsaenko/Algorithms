@@ -7,7 +7,7 @@ using System.Text;
 
 namespace BinaryTree
 {
-    public class BinarySearchTree<T> : IEnumerable<T> where T : IComparable<T>
+    public class BinarySearchTree<T> : IBinarySearchTree<T> where T : IComparable<T>
     {
         private Node<T> head;
         private int count;
